@@ -1,12 +1,13 @@
 <h2>User List</h2>>
 <table class="table">
     <thead>
-      <tr *ngFor="let user of users">
-        <th scope="col">Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Fiscal Code</th>
-        <th scope="col">Phone</th>
-        <th scope="col">Province</th>
+      <tr *ngFor="let user of users; let i = index">
+        <td>{{i + 1}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.fiscalCode}}</td>
+        <td>{{user.phone}}</td>
+        <td>{{user.province}}</td>
       </tr>
     </thead>
     <tbody>

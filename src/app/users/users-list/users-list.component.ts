@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { SafeScript } from '@angular/platform-browser';
 
-@Component({
-  selector: 'app-users-list',
-  templateUrl: './users-list.component.html',
-  styleUrl: './users-list.component.css'
-})
-
 interface User{
   name: string;
   lastName: string;
@@ -15,6 +9,12 @@ interface User{
   phone: string;
   province: string;
 }
+
+@Component({
+  selector: 'app-users-list',
+  templateUrl: './users-list.component.html',
+  styleUrl: './users-list.component.css'
+})
 
 export class UsersListComponent {
 
