@@ -1,9 +1,10 @@
+main > .container,
 main > .container-fluid {
-  padding: 60px 15px;
+  padding: 60px 15px 0;
 }
 .container-fluid {
   width: auto;
-  max-width: 980px;
+  max-width: 1780px;
   padding: 0 15px;
 }
 

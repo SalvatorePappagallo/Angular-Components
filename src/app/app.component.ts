@@ -7,7 +7,10 @@ import { Component, inject } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'ums';
+  userCol = 12;
+  formCol = 0;
+  title = 'User Managment System';
+  selectedUser: User | null = null;
   userService = inject(UserService)
   user = this.userService.getUser();
 
@@ -17,7 +20,15 @@ export class AppComponent {
   }
 
   showUserForm(user: User): void {
-    this.user = this.userService.getUser();
+    if (this.selectedUser == user){
+      this.selectedUser = null;
+      this.userCol = 12;
+      this.formCol = 0;
+    } else {
+      this.selectedUser = user;
+      this.userCol = 8;
+      this.formCol = 4;
+    }
   }
 }
 

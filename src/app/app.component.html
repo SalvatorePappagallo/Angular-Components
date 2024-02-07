@@ -5,17 +5,20 @@
 <main class="flex-shrink-0">
   <div class="container-fluid">
     <div class="row">
-      <div class="col col-md-11">
-    <h1>User Management System</h1>
-    <app-users-list
-      [users_list]="user"
-      (userDeleted)="onDeleteUser($event)"
-      (userToBeUpdate)="showUserForm($event)"
-    ></app-users-list>
+      <div class="col-md-{{userCol}}">
+        <h1>{{ title }}</h1>
+        <app-users-list
+          [users_list]="user"
+          (userDeleted)="onDeleteUser($event)"
+          (userToBeUpdate)="showUserForm($event)"
+        ></app-users-list>
       </div>
-      <div class="col">
-        User form
+      @if(selectedUser) {
+      <div class="col-md-{{formCol}}">
+        <h2>User form</h2>
+        <app-user-form [user]="selectedUser"></app-user-form>
       </div>
+      }
     </div>
   </div>
 </main>
