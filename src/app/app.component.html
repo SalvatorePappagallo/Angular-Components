@@ -1,2 +1,24 @@
-<h1>User Management System</h1>
-<app-users-list></app-users-list>
+<header>
+  <app-navbar></app-navbar>
+</header>
+
+<main class="flex-shrink-0">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col col-md-11">
+    <h1>User Management System</h1>
+    <app-users-list
+      [users_list]="user"
+      (userDeleted)="onDeleteUser($event)"
+      (userToBeUpdate)="showUserForm($event)"
+    ></app-users-list>
+      </div>
+      <div class="col">
+        User form
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-theme-toggler></app-theme-toggler>
+<app-footer></app-footer>

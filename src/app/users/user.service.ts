@@ -1,26 +1,19 @@
-import { User } from './../user.service';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { UserService} from '../user.service';
+import { Injectable } from "@angular/core";
 
-/* Per il servizio è aggiunta nel file del servizio
-interface User{
+export interface User {
   name: string;
   lastName: string;
   email: string;
   fiscalCode: string;
   phone: string;
   province: string;
-}*/
+}
 
-@Component({
-  selector: 'app-users-list',
-  templateUrl: './users-list.component.html',
-  styleUrl: './users-list.component.css'
+@Injectable ({
+  providedIn: 'root'
 })
-export class UsersListComponent{
- //implements OnInit {
-  /* SE VOLESSIMO UTILIZZARE UN SERVIZIO I DATI VENGONO SPOSTATI NEL SERVIZIO
-     IN QUESTO CASO, IL FILE DEL SERVIZIO E' "user.service.ts"
+export class UserService {
+
   users: User[] = [
     { name: "Mario", lastName: "Rossi", fiscalCode: "RSSMRA80A01H501U", phone: "1234567890", province: "Roma", email: "mario.rossi@example.com" },
     { name: "Luigi", lastName: "Bianchi", fiscalCode: "BNCLGU80A01H501V", phone: "0987654321", province: "Milano", email: "luigi.bianchi@example.com" },
@@ -33,37 +26,18 @@ export class UsersListComponent{
     { name: "Paolo", lastName: "Viola", fiscalCode: "VLAPAO80A01H501C", phone: "8901234567", province: "Venezia", email: "paolo.viola@example.com" },
     { name: "Simone", lastName: "Arancio", fiscalCode: "ARNSMN80A01H501M", phone: "9012345678", province: "Catania", email: "simone.arancio@example.com" },
     { name: "Chiara", lastName: "Azzurra", fiscalCode: "AZZCHR80A01H501R", phone: "0123456789", province: "Bari", email: "chiara.azzurra@example.com" }
-  ];*/
+  ];
 
-  @Input() users_list: User [] = [];
-
-  @Output() userDeleted = new EventEmitter<User>();
-  @Output() userToBeUpdate = new EventEmitter<User>();
-
-
-  trackUser(index: number, user: User): string {
-    return user.email;
+  getUser(): User[] {
+    return this.users;
   }
 
-  /*COMMENTATO POICHE' FACCIAMO TUTTO NEL PADRE "app.component.ts"
-  constructor(private userService: UserService) {
-    this.users_list = this.getUser();
+  constructor() {
 
   }
-
-  private getUser(): User [] {
-    return this.userService.getUser();
-  }
-
-  ngOnInit(): void {
-
-  }*/
-
-  updateUser(user: User) {
-    this.userToBeUpdate.emit(user);
-    }
 
   deleteUser(user: User): void {
-    this.userDeleted.emit(user);
+    const idx = this.users.findIndex(ele => ele.fiscalCode === user.fiscalCode);
+    this.users.splice(idx, 1);
   }
 }
