@@ -25,7 +25,7 @@ export class AppComponent {
       this.userCol = 12;
       this.formCol = 0;
     } else {
-      this.selectedUser = user;
+      this.selectedUser = { ...user }; //clonare un oggetto, oppure si può con Object.assign({}, user)
       this.userCol = 8;
       this.formCol = 4;
     }

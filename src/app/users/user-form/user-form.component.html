@@ -1,30 +1,33 @@
-  <form>
+  <!--SE NON SI USA IL "PARTIAL<>" NEL FILE.TS BISOGNA CONTROLLARE CHE NON CI SIANO CAMPI VUOTI-->
+  <!--@if(user){-->
+  <form #userForm="ngForm" (ngSubmit)="onSubmitForm(userForm)">
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>
-        <input type="text" id="name" name="name" class="form-control" placeholder="User name">
+        <input type="text" required [(ngModel)]="user.name" id="name" name="name" class="form-control" placeholder="User Name">
       </div>
       <div class="mb-3">
         <label for="lastName" class="form-label">Last Name</label>
-        <input type="text" id="lastName" name="lastName" class="form-control" placeholder="User last name">
+        <input type="text" required [(ngModel)]="user.lastName" id="lastName" name="lastName" class="form-control" placeholder="User Last Name">
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input type="text" id="email" name="email" class="form-control" placeholder="Email">
+        <input type="text" required [(ngModel)]="user.email" id="email" name="email" class="form-control" placeholder="email@exemple.glob">
       </div>
       <div class="mb-3">
         <label for="fiscalCode" class="form-label">Fiscal Code</label>
-        <input type="text" id="fiscalCode" name="fiscalCode" class="form-control" placeholder="Fiscal Code">
+        <input type="text" required [(ngModel)]="user.fiscalCode" id="fiscalCode" name="fiscalCode" class="form-control" placeholder="Fiscal Code">
       </div>
       <div class="mb-3">
         <label for="phone" class="form-label">Phone</label>
-        <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone">
+        <input type="text" [(ngModel)]="user.phone" id="phone" name="phone" class="form-control" placeholder="Phone">
       </div>
       <div class="mb-3">
         <label for="province" class="form-label">Province</label>
-        <input type="text" id="province" name="province" class="form-control" placeholder="Province">
+        <input type="text" required [(ngModel)]="user.province" id="province" name="province" class="form-control" placeholder="Province">
       </div>
 
-      <button type="submit" class="btn btn-primary me-2">Submit</button>
+      <button type="submit" [disabled]="!userForm.valid" class="btn btn-primary me-2">Submit</button>
       <button type="reset" class="btn btn-danger ms-2">Reset</button>
 
   </form>
+  <!--}-->
