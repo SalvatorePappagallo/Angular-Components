@@ -1,6 +1,5 @@
-import { User } from './../user.service';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { UserService} from '../user.service';
+import { User, UserService } from './../user.service';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 
 /* Per il servizio è aggiunta nel file del servizio
 interface User{
@@ -35,7 +34,8 @@ export class UsersListComponent{
     { name: "Chiara", lastName: "Azzurra", fiscalCode: "AZZCHR80A01H501R", phone: "0123456789", province: "Bari", email: "chiara.azzurra@example.com" }
   ];*/
 
-  @Input() users_list: User [] = [];
+  users_list: User [] = [];
+  userService = inject(UserService);
 
   @Output() userDeleted = new EventEmitter<User>();
   @Output() userToBeUpdate = new EventEmitter<User>();
@@ -54,10 +54,10 @@ export class UsersListComponent{
   private getUser(): User [] {
     return this.userService.getUser();
   }
-
+*/
   ngOnInit(): void {
-
-  }*/
+    this.users_list = this.userService.getUser();
+  }
 
   updateUser(user: User) {
     this.userToBeUpdate.emit(user);
