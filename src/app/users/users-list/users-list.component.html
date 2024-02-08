@@ -13,9 +13,9 @@
     </tr>
   </thead>
   <tbody>
-    @for (user of users_list; track user.email;let i = $index) {
+    @for (user of users_list; track user.email) {
     <tr>
-      <td>{{ i + 1 }}</td>
+      <td>{{ user.id}}</td>
       <td>{{ user.name }}</td>
       <td>{{ user.lastName }}</td>
       <td>{{ user.email }}</td>
@@ -33,7 +33,7 @@
           <a
             class="btn btn-secondary m-1"
             data-bs-toggle="collapse"
-            href="#collapseExample{{ i }}"
+            href="#collapseExample{{ user.id }}"
             role="button"
             aria-expanded="false"
             aria-controls="collapseExample"
@@ -45,7 +45,7 @@
     </tr>
     <tr>
       <td colspan="7">
-        <div class="collapse" id="collapseExample{{ i }}">
+        <div class="collapse" id="collapseExample{{ user.id }}">
           <div class="card card-body">
             {{ user | json }}
           </div>

@@ -1,4 +1,5 @@
-import { Component, Input, input } from '@angular/core';
+import { UserService } from './../user.service';
+import { Component, EventEmitter, Input, Output, inject} from '@angular/core';
 import { User } from '../user.service';
 import { NgForm } from '@angular/forms';
 
@@ -9,9 +10,17 @@ import { NgForm } from '@angular/forms';
 })
 export class UserFormComponent {
   @Input() user: Partial<User>= {};
+  @Output() updateUser = new EventEmitter<User>
 
-  onSubmitForm(form: NgForm) {
+  //UserService = inject(UserService); O usiamo l'injector oppure il costruttore, come sotto
+  constructor(private userService: UserService){
 
+  }
+
+  onSubmitForm(f: NgForm) {
+    const userUpdated = {...f.value, id: this.user.id ?? 0};
+    this.updateUser.emit(userUpdated);
+    f.reset();//resetta il form dopo il "submit"
   }
 
 }

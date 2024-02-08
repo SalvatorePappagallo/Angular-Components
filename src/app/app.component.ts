@@ -7,6 +7,7 @@ import { Component, inject } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+
   userCol = 12;
   formCol = 0;
   title = 'User Managment System';
@@ -20,7 +21,7 @@ export class AppComponent {
   }
 
   showUserForm(user: User): void {
-    if (this.selectedUser == user){
+    if (this.selectedUser != null){
       this.selectedUser = null;
       this.userCol = 12;
       this.formCol = 0;
@@ -29,6 +30,12 @@ export class AppComponent {
       this.userCol = 8;
       this.formCol = 4;
     }
+  }
+
+  onUserUpdate(user: User) {
+     this.userService.updateUser(user);
+     this.user = this.userService.getUser();
+     this.selectedUser = null;//toglie le colonne del form dopo il "submit"
   }
 }
 
