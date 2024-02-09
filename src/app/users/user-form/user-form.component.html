@@ -1,11 +1,13 @@
 <!--SE NON SI USA IL "PARTIAL<>" NEL FILE.TS BISOGNA CONTROLLARE CHE NON CI SIANO CAMPI VUOTI-->
-<!--@if(user){-->
+
 <form #userForm="ngForm" (ngSubmit)="onSubmitForm(userForm)">
+  @if(user){
   <div class="mb-3">
     <label for="name" class="form-label">Name</label>
     <input
       type="text"
       #name="ngModel"
+      required
       [(ngModel)]="user.name"
       id="name"
       name="name"
@@ -35,13 +37,13 @@
       placeholder="User Last Name"
     />
     @if(lastName.invalid && (lastName.dirty || lastName.touched)){
-      <div class="alert alert-danger">
-        <div *ngIf="lastName.errors?.['required']">Last Name is required!</div>
-        <div *ngIf="lastName.errors?.['minlength']">
-          Last Name lenght must be at least 3 characters!
-        </div>
+    <div class="alert alert-danger">
+      <div *ngIf="lastName.errors?.['required']">Last Name is required!</div>
+      <div *ngIf="lastName.errors?.['minlength']">
+        Last Name lenght must be at least 3 characters!
       </div>
-      }
+    </div>
+    }
   </div>
   <div class="mb-3">
     <label for="email" class="form-label">Email</label>
@@ -57,13 +59,13 @@
       placeholder="email@exemple.glob"
     />
     @if(email.invalid && (email.dirty || email.touched)){
-      <div class="alert alert-danger">
-        <div *ngIf="email.errors?.['required']">Email is required!</div>
-        <div *ngIf="email.errors?.['email']">
-          Wrong fill. Please insert a valid email
-        </div>
+    <div class="alert alert-danger">
+      <div *ngIf="email.errors?.['required']">Email is required!</div>
+      <div *ngIf="email.errors?.['email']">
+        Wrong fill. Please insert a valid email
       </div>
-      }
+    </div>
+    }
   </div>
   <div class="mb-3">
     <label for="fiscalCode" class="form-label">Fiscal Code</label>
@@ -79,13 +81,13 @@
       placeholder="Fiscal Code"
     />
     @if(fiscalCode.invalid && (fiscalCode.dirty || fiscalCode.touched)){
-      <div class="alert alert-danger">
-        <div *ngIf="fiscalCode.errors?.['required']">Email is required!</div>
-        <div *ngIf="fiscalCode.errors?.['pattern']">
-          Wrong fill. Please insert a valid email
-        </div>
+    <div class="alert alert-danger">
+      <div *ngIf="fiscalCode.errors?.['required']">Fiscal Code is required!</div>
+      <div *ngIf="fiscalCode.errors?.['pattern']">
+        Wrong fill. Please insert a valid Fiscal Code
       </div>
-      }
+    </div>
+    }
   </div>
   <div class="mb-3">
     <label for="phone" class="form-label">Phone</label>
@@ -100,12 +102,12 @@
       placeholder="Phone"
     />
     @if(phone.invalid && (phone.dirty || phone.touched)){
-      <div class="alert alert-danger">
-        <div *ngIf="phone.errors?.['pattern']">
-          Wrong fill. Please insert a valid Phone number
-        </div>
+    <div class="alert alert-danger">
+      <div *ngIf="phone.errors?.['pattern']">
+        Wrong fill. Please insert a valid Phone number
       </div>
-      }
+    </div>
+    }
   </div>
   <div class="mb-3">
     <label for="province" class="form-label">Province</label>
@@ -120,22 +122,27 @@
       placeholder="Province"
     />
     @if(province.invalid && (province.dirty || province.touched)){
-      <div class="alert alert-danger">
-        <div *ngIf="province.errors?.['required']">Province is required!</div>
-        <div *ngIf="province.errors?.['minlength']">
-          Province lenght must be at least 3 characters!
-        </div>
+    <div class="alert alert-danger">
+      <div *ngIf="province.errors?.['required']">Province is required!</div>
+      <div *ngIf="province.errors?.['minlength']">
+        Province lenght must be at least 3 characters!
       </div>
-      }
+    </div>
+    }
   </div>
+  } @else {
+  <div class="alert alert-danger">User not found</div>
+  }
 
-  <button
-    type="submit"
-    [disabled]="!userForm.valid"
-    class="btn btn-primary me-2"
-  >
-    Submit
-  </button>
-  <button type="reset" class="btn btn-danger ms-2">Reset</button>
+  <div class="d-flex justify-content-center">
+    <button
+      type="submit"
+      [disabled]="!userForm.valid"
+      class="btn btn-primary me-2"
+    >
+      Submit
+    </button>
+    <button type="reset" class="btn btn-danger me-2">Reset</button>
+    <a [routerLink]="['/users']" class="btn btn-secondary me-2"> Back </a>
+  </div>
 </form>
-<!--}-->

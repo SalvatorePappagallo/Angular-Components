@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { User, UserService } from './../user.service';
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 
@@ -35,10 +36,15 @@ export class UsersListComponent{
   ];*/
 
   users_list: User [] = [];
+  /* Non serve farlo così se si usa il "constructor" come sotto
   userService = inject(UserService);
+  router = inject(Router);*/
+  constructor(private userService: UserService, private router: Router){
 
-  @Output() userDeleted = new EventEmitter<User>();
-  @Output() userToBeUpdate = new EventEmitter<User>();
+  }
+
+  //@Output() userDeleted = new EventEmitter<User>();
+  //@Output() userToBeUpdate = new EventEmitter<User>();
 
 
   trackUser(index: number, user: User): string {
@@ -56,14 +62,15 @@ export class UsersListComponent{
   }
 */
   ngOnInit(): void {
-    this.users_list = this.userService.getUser();
+    this.users_list = this.userService.getUsers();
   }
 
   updateUser(user: User) {
-    this.userToBeUpdate.emit(user);
+    //this.router.navigate(['users', user.id]); Utilizziamo il linkaggio da HTML
     }
 
   deleteUser(user: User): void {
-    this.userDeleted.emit(user);
+    this.userService.userDeleted.next(user);
+    //this.userDeleted.emit(user);
   }
 }

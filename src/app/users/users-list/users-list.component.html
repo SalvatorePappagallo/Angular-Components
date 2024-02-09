@@ -15,7 +15,7 @@
   <tbody>
     @for (user of users_list; track user.email) {
     <tr>
-      <td>{{ user.id}}</td>
+      <td>{{ user.id }}</td>
       <td>{{ user.name }}</td>
       <td>{{ user.lastName }}</td>
       <td>{{ user.email }}</td>
@@ -24,14 +24,22 @@
       <td>{{ user.province }}</td>
       <td>
         <div class="d-flex justify-content-center">
-          <button (click)="updateUser(user)" class="btn btn-primary m-1">
-            <i class="bi bi-pen"></i>
-          </button>
+          <a
+            [routerLink]="['/users', user.id, 'show']"
+            class="btn btn-my-info m-1"
+          >
+            <i class="bi bi-info-circle-fill"></i>
+          </a><a
+          [routerLink]="['/users', user.id]"
+          class="btn btn-primary m-1"
+        >
+          <i class="bi bi-pen-fill"></i>
+        </a>
           <button (click)="deleteUser(user)" class="btn btn-danger m-1">
-            <i class="bi bi-trash"></i>
+            <i class="bi bi-trash3-fill"></i>
           </button>
           <a
-            class="btn btn-secondary m-1"
+            class="btn btn-info m-1"
             data-bs-toggle="collapse"
             href="#collapseExample{{ user.id }}"
             role="button"

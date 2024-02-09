@@ -15,10 +15,23 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a
+            class="nav-link"
+            [routerLinkActiveOptions]="{exact: true}"
+            routerLink="users"
+            routerLinkActive="active"
+            aria-current="page"
+            >User List</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a
+            class="nav-link"
+            [routerLinkActiveOptions]="{exact: true}"
+            routerLink="users/create"
+            routerLinkActive="active"
+            >New User</a
+          >
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">Disabled</a>
@@ -31,9 +44,7 @@
           placeholder="Search"
           aria-label="Search"
         />
-        <button class="btn btn-outline-success" type="submit">
-          Search
-        </button>
+        <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
   </div>

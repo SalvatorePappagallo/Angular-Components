@@ -4,7 +4,7 @@ main > .container-fluid {
 }
 .container-fluid {
   width: auto;
-  max-width: 1780px;
+  max-width: 1080px;
   padding: 0 15px;
 }
 
